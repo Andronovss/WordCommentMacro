@@ -22,28 +22,28 @@ Public Sub ExtractCommentsToNewDoc()
     Dim n As Long
     Dim Title As String
         
-    Title = "Экспорт комментариев в новый документ"
+    Title = "Р­РєСЃРїРѕСЂС‚ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ РІ РЅРѕРІС‹Р№ РґРѕРєСѓРјРµРЅ"
     Set oDoc = ActiveDocument
     nCount = ActiveDocument.Comments.Count
     
     If nCount = 0 Then
-        MsgBox "Докумен не содержит комментариев", vbOKOnly, Title
+        MsgBox "Р”РѕРєСѓРјРµРЅ РЅРµ СЃРѕРґРµСЂР¶РёС‚ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ", vbOKOnly, Title
         GoTo ExitHere
     Else
-        'Макрос приостанавливает своё выполнение до подтверждения действия.
-        If MsgBox("Выполнить экспорт комментариев?", _
+        'РњР°РєСЂРѕСЃ РїСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРІРѕС‘ РІС‹РїРѕР»РЅРµРЅРёРµ РґРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РґРµР№СЃС‚РІРёСЏ.
+        If MsgBox("Р’С‹РїРѕР»РЅРёС‚СЊ СЌРєСЃРїРѕСЂС‚ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ", _
                 vbYesNo + vbQuestion, Title) <> vbYes Then
             GoTo ExitHere
         End If
     End If
         
     Application.ScreenUpdating = False
-    'Создание новго документа на основе шаблона Normal.dotm.
+    'РЎРѕР·РґР°РЅРёРµ РЅРѕРІРіРѕ РґРѕРєСѓРјРµРЅС‚Р° РЅР° РѕСЃРЅРѕРІРµ С€Р°Р±Р»РѕРЅР°.dotm.
     Set oNewDoc = Documents.Add
-    'Определение ориентации страниц для создаваемого документа.
+    'РћРїСЂРµРґРµР»РµРЅРёРµ РѕСЂРёРµРЅС‚Р°С†РёРё СЃС‚СЂР°РЅРёС† РґР»СЏ СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РґРѕРєСѓРјРµРЅС‚Р°.
     oNewDoc.PageSetup.Orientation = wdOrientLandscape
-    'Помещаем в создаваемый документ таблицу с 5-ю колонками
-    'Кол-во колонок определяется параметром "NumColumns".
+    'РџРѕРјРµС‰Р°РµРј РІ СЃРѕР·РґР°РІР°РµРјС‹Р№ РґРѕРєСѓРјРµРЅС‚ С‚Р°Р±Р»РёС†Сѓ СЃ 5-СЋ РєРѕР»РѕРЅРєР°РјРё
+    'РљРѕР»-РІРѕ РєРѕР»РѕРЅРѕРє РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ РїР°СЂР°РјРµС‚СЂРѕРј "NumColumns".
     With oNewDoc
         .Content = ""
         Set oTable = .Tables.Add _
@@ -52,16 +52,16 @@ Public Sub ExtractCommentsToNewDoc()
             NumColumns:=5)
     End With
     
-    'В заголовок таблицы помещаем следующий контент:
-    'Из какого файла делается экспорт
-    'Кто экспортирует комментарии
-    'Дата экспорта комментариев.
+    'Р’ Р·Р°РіРѕР»РѕРІРѕРє С‚Р°Р±Р»РёС†С‹ РїРѕРјРµС‰Р°РµРј СЃР»РµРґСѓСЋС‰РёР№ РєРѕРЅС‚РµРЅ:
+    'РР· РєР°РєРѕРіРѕ С„Р°Р№Р»Р° РґРµР»Р°РµС‚СЃСЏ СЌРєСЃРїРѕСЂС‚
+    'РљС‚Рѕ СЌРєСЃРїРѕСЂС‚РёСЂСѓРµС‚ РєРѕРјРјРµРЅС‚Р°СЂРёРё
+    'Р”Р°С‚Р° СЌРєСЃРїРѕСЂС‚Р° РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ.
     oNewDoc.Sections(1).Headers(wdHeaderFooterPrimary).Range.Text = _
-        "Исходный файл: " & oDoc.FullName & vbCr & _
-        "Автор: " & Application.UserName & vbCr & _
-        "Дата создания: " & Format(Date, "MMMM d, yyyy")
+        "Г€Г±ГµГ®Г¤Г­Г»Г© ГґГ Г©Г«: " & oDoc.FullName & vbCr & _
+        "ГЂГўГІГ®Г°: " & Application.UserName & vbCr & _
+        "Г„Г ГІГ  Г±Г®Г§Г¤Г Г­ГЁГї: " & Format(Date, "MMMM d, yyyy")
             
-    'Настраиваем параметры шрифта текста.
+    'РќР°СЃС‚СЂР°РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ С€СЂРёС„С‚Р° С‚РµРєСЃС‚Р°.
     With oNewDoc.Styles(wdStyleNormal)
         .Font.Name = "Times New Roman"
         .Font.Size = 10
@@ -69,13 +69,13 @@ Public Sub ExtractCommentsToNewDoc()
         .ParagraphFormat.SpaceAfter = 6
     End With
     
-    'Настраиваем параметры шрифта для текста верхнего колонтитула.
+    'РќР°СЃС‚СЂР°РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ С€СЂРёС„С‚Р° РґР»СЏ С‚РµРєСЃС‚Р° РІРµСЂС…РЅРµРіРѕ РєРѕР»РѕРЅС‚РёС‚СѓР»Р°.
     With oNewDoc.Styles(wdStyleHeader)
         .Font.Size = 9
         .ParagraphFormat.SpaceAfter = 0
     End With
    
-    'Настраиваем стиль таблицы.
+    'РќР°СЃС‚СЂР°РёРІР°РµРј СЃС‚РёР»СЊ С‚Р°Р±Р»РёС†С‹.
     With oTable
         .Range.Style = wdStyleNormal
         .AllowAutoFit = False
@@ -85,37 +85,37 @@ Public Sub ExtractCommentsToNewDoc()
         .Rows(1).HeadingFormat = True
     End With
     
-    'Делаем рамку для таблицы.
+    'Р”РµР»Р°РµРј СЂР°РјРєРё РґР»СЏ С‚Р°Р±Р»РёС†С‹.
     With oTable.Borders
         .InsideLineStyle = wdLineStyleSingle
         .OutsideLineStyle = wdLineStyleSingle
     End With
 
-    'Задаём наименование для заголовка таблицы
+    'Р—Р°РґР°С‘Рј РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РґР»СЏ Р·Р°РіРѕР»РѕРІРєР° С‚Р°Р±Р»РёС†С‹
     With oTable.Rows(1)
         .Range.Font.Bold = True
         .Range.Font.Size = 12
         .Range.ParagraphFormat.Alignment = wdAlignParagraphCenter
-        .Cells(1).Range.Text = "Дата"
-        .Cells(2).Range.Text = "Страница"
-        .Cells(3).Range.Text = "Автор"
-        .Cells(4).Range.Text = "Исходный текс"
-        .Cells(5).Range.Text = "Комментарий"
+        .Cells(1).Range.Text = "Р”Р°С‚Р°"
+        .Cells(2).Range.Text = "РЎС‚СЂР°РЅРёС†Р°"
+        .Cells(3).Range.Text = "РђРІС‚РѕСЂ"
+        .Cells(4).Range.Text = "РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚"
+        .Cells(5).Range.Text = "РљРѕРјРјРµРЅС‚Р°СЂРёР№"
     End With
        
-    'Прописываем наименование заголовков
+    'РџСЂРѕРїРёСЃС‹РІР°РµРј РЅР°РёРјРµРЅРѕРІР°РЅРёРµ Р·Р°РіРѕР»РѕРІРєРѕРІ.
     For n = 1 To nCount
         With oTable.Rows(n + 1)
-            'Номер страницы
+            'РќРѕРјРµСЂ СЃС‚СЂР°РЅРёС†С‹
             .Cells(2).Range.Text = _
                 oDoc.Comments(n).Scope.Information(wdActiveEndPageNumber)
-            'Текс, которым был помечен комментарий
+            'РўРµРєСЃС‚, РєРѕС‚РѕСЂС‹Рј Р±С‹Р» РїРѕРјРµС‡РµРЅ РєРѕРјРјРµРЅС‚Р°СЂРёР№
             .Cells(4).Range.Text = oDoc.Comments(n).Scope
-            'Комментарий
+            'РљРѕРјРјРµРЅС‚Р°СЂРёР№
             .Cells(5).Range.Text = oDoc.Comments(n).Range.Text
-            'Автор комментария
+            'РђРІС‚РѕСЂ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ
             .Cells(3).Range.Text = oDoc.Comments(n).Author
-            'Дата комментария в формате dd-MMM-yyyy
+            'Р”Р°С‚Р° РєРѕРјРјРµРЅС‚Р°СЂРёСЏ РІ С„РѕСЂРјР°С‚Рµ dd-MMM-yyyy dd-MMM-yyyy
             .Cells(1).Range.Text = Format(oDoc.Comments(n).Date, "dd-MMM-yyyy")
         End With
     Next n
@@ -124,7 +124,7 @@ Public Sub ExtractCommentsToNewDoc()
     Application.ScreenRefresh
         
     oNewDoc.Activate
-    MsgBox nCount & " Комментарии найдены. Завершено создание документа.", vbOKOnly, Title
+    MsgBox nCount & " РљРѕРјРјРµРЅС‚Р°СЂРёРё РЅР°Р№РґРµРЅС‹. Р—Р°РІРµСЂС€РµРЅРѕ СЃРѕР·РґР°РЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°.", vbOKOnly, Title
 
 ExitHere:
     Set oDoc = Nothing
