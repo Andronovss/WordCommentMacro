@@ -1,4 +1,4 @@
-Attribute VB_Name = "WordComments1"
+Attribute VB_Name = "WordComments"
 Public Sub ExtractCommentsToNewDoc()
 '=========================
     'Macro created 2007 by Lene Fredborg, DocTools - www.thedoctools.com
